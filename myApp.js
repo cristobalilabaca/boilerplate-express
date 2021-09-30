@@ -8,8 +8,10 @@ app.get('/', (_, res) => {
 })
 
 app.get("/json", (_, res) => {
-  res.json({"message": "Hello json"});
+  res.json({"message": process.env.MESSAGE_STYLE === 'uppercase' ? "HELLO JSON" : "Hello json"});
 })
+
+console.log(process.env)
 
 console.log("Hello World");
 
