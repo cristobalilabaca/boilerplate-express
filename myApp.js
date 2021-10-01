@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -7,6 +8,8 @@ app.use((req, _, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 })
+
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/', (_, res) => {
   res.sendFile(__dirname + '/views/index.html');
